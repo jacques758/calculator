@@ -5,11 +5,12 @@ namespace Calculator_App
 {
     class Program
     {
+        // List to store calculation history
+        static System.Collections.Generic.List<string> history = new System.Collections.Generic.List<string>();
         static void Main(string[] args)
         {
             bool exit = false;
             while (!exit)
-
             {
                 //main program with menu options
                 Console.WriteLine("=======Calculator App==========");
@@ -20,9 +21,9 @@ namespace Calculator_App
                 Console.WriteLine("4 - Division");
                 Console.WriteLine("5 - Apply four operations");
                 Console.WriteLine("6 - Calculate average");
-                Console.WriteLine("7 - Exit");
+                Console.WriteLine("7 - View history");
+                Console.WriteLine("8 - Exit");
 
-                //case statements for each menu program
                 int choice;
                 if (int.TryParse(Console.ReadLine(), out choice))
                 {
@@ -33,21 +34,27 @@ namespace Calculator_App
                             double addend1 = double.Parse(Console.ReadLine());
                             Console.WriteLine("Enter the second number:");
                             double addend2 = double.Parse(Console.ReadLine());
-                            Console.WriteLine("Result: " + Addition(addend1, addend2));
+                            double addResult = Addition(addend1, addend2);
+                            Console.WriteLine("Result: " + addResult);
+                            history.Add($"Addition: {addend1} + {addend2} = {addResult}");
                             break;
                         case 2:
                             Console.WriteLine("Enter the first number:");
                             double minuend = double.Parse(Console.ReadLine());
                             Console.WriteLine("Enter the second number:");
                             double subtrahend = double.Parse(Console.ReadLine());
-                            Console.WriteLine("Result: " + Subtraction(minuend, subtrahend));
+                            double subResult = Subtraction(minuend, subtrahend);
+                            Console.WriteLine("Result: " + subResult);
+                            history.Add($"Subtraction: {minuend} - {subtrahend} = {subResult}");
                             break;
                         case 3:
                             Console.WriteLine("Enter the first number:");
                             double factor1 = double.Parse(Console.ReadLine());
                             Console.WriteLine("Enter the second number:");
                             double factor2 = double.Parse(Console.ReadLine());
-                            Console.WriteLine("Result: " + Multiplication(factor1, factor2));
+                            double mulResult = Multiplication(factor1, factor2);
+                            Console.WriteLine("Result: " + mulResult);
+                            history.Add($"Multiplication: {factor1} * {factor2} = {mulResult}");
                             break;
                         case 4:
                             Console.WriteLine("Enter the first number:");
@@ -57,10 +64,13 @@ namespace Calculator_App
                             if (divisor == 0)
                             {
                                 Console.WriteLine("Result: Infinity");
+                                history.Add($"Division: {dividend} / {divisor} = Infinity");
                             }
                             else
                             {
-                                Console.WriteLine("Result: " + Division(dividend, divisor));
+                                double divResult = Division(dividend, divisor);
+                                Console.WriteLine("Result: " + divResult);
+                                history.Add($"Division: {dividend} / {divisor} = {divResult}");
                             }
                             break;
                         case 5:
@@ -77,9 +87,26 @@ namespace Calculator_App
                             double num4 = double.Parse(Console.ReadLine());
                             Console.WriteLine("Enter the third number:");
                             double num5 = double.Parse(Console.ReadLine());
-                            Console.WriteLine("Average: " + CalculateAverage(num3, num4, num5));
+                            double avg = CalculateAverage(num3, num4, num5);
+                            Console.WriteLine("Average: " + avg);
+                            history.Add($"Average: ({num3} + {num4} + {num5}) / 3 = {avg}");
                             break;
                         case 7:
+                            Console.WriteLine("======= Calculation History =======");
+                            if (history.Count == 0)
+                            {
+                                Console.WriteLine("No calculations yet.");
+                            }
+                            else
+                            {
+                                foreach (var entry in history)
+                                {
+                                    Console.WriteLine(entry);
+                                }
+                            }
+                            Console.WriteLine("==================================");
+                            break;
+                        case 8:
                             Console.WriteLine("Thank you for using my calculator application!");
                             exit = true;
                             break;
@@ -118,19 +145,23 @@ namespace Calculator_App
 
         static void ApplyFourOperations(double num1, double num2)
         {
-            Console.WriteLine("Addition: " + Addition(num1, num2));
-            Console.WriteLine("Subtraction:" + Subtraction(num1, num2));
-            Console.WriteLine("Multiplication: " + Multiplication(num1, num2));
-            double result = Division(num1, num2);
-            if (double.IsInfinity(result))
+            double add = Addition(num1, num2);
+            double sub = Subtraction(num1, num2);
+            double mul = Multiplication(num1, num2);
+            double div = Division(num1, num2);
+            Console.WriteLine("Addition: " + add);
+            Console.WriteLine("Subtraction: " + sub);
+            Console.WriteLine("Multiplication: " + mul);
+            if (double.IsInfinity(div))
             {
                 Console.WriteLine("Division: Infinity");
+                history.Add($"ApplyFourOperations: {num1} + {num2} = {add}, {num1} - {num2} = {sub}, {num1} * {num2} = {mul}, {num1} / {num2} = Infinity");
             }
             else
             {
-                Console.WriteLine("Division: " + result);
+                Console.WriteLine("Division: " + div);
+                history.Add($"ApplyFourOperations: {num1} + {num2} = {add}, {num1} - {num2} = {sub}, {num1} * {num2} = {mul}, {num1} / {num2} = {div}");
             }
-
         }
         static double CalculateAverage(double num1, double num2, double num3)
         {
