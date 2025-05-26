@@ -8,7 +8,7 @@
 - [ ] Support for multiple numbers: allow operations (like sum, average, etc.) on a list of numbers, not just two or three
 - [ ] User interface improvements: add color to the console output, use clearer menus and prompts
 - [ ] Modularize the code: move each operation into its own class or file for better organization and scalability
-- [ ] Save/load functionality: allow users to save their calculation history to a file and load it later
+- [x] Save/load functionality: allow users to save their calculation history to a file and load it later
 - [ ] Unit tests: add a test project to ensure all operations work as expected
 - [ ] Scientific/programmer modes: add modes for scientific or programmer calculations (binary, hex, bitwise operations)
 - [ ] GUI version: create a simple graphical user interface using Windows Forms or WPF
@@ -39,37 +39,26 @@
 11. Load history
 12. Exit
 
-## Current Issue (Build Error)
 
-When running `dotnet run`, the following build errors occur:
+## Current Warnings
 
-```
-C:\Users\jacqu\OneDrive\Bureau\personal project\calculator\Program.cs(10,5): error CS1519: Invalid token '{' in class, record, struct, or interface member declaration
-...
-C:\Users\jacqu\OneDrive\Bureau\personal project\calculator\Program.cs(207,13): error CS1022: Type or namespace definition, or end-of-file expected
-...
-```
+The build error has been fixed, but there are still multiple compiler warnings. Next steps:
 
-### Error Summary
-- There is a misplaced `{` after the class declaration:
-  ```csharp
-  class Program
-      // File path for saving/loading history
-      static string historyFilePath = "history.txt";
-  {
-      // List to store calculation history
-      ...
-  }
-  ```
-- This causes the compiler to see invalid tokens and misinterpret the class structure.
-- There are also duplicate or misplaced `default:` and `else` statements at the end of the file.
+- [ ] Review and resolve all compiler warnings for cleaner builds and better code quality.
+    - Run `dotnet build` to see the list of warnings.
+    - Address each warning, prioritizing those related to potential bugs or deprecated features.
 
 ## Next Steps
 
-### To Fix the Build Error
-- Fix the class declaration and member placement in `Program.cs`.
-- Ensure all methods and fields are inside the `class Program { ... }` block.
-- Rebuild the project after correcting the structure.
+- Add input validation and error handling for all user inputs.
+- Expand the set of mathematical operations (modulus, trigonometric, logarithmic, etc.).
+- Allow operations on multiple numbers (not just two or three).
+- Refactor code for modularity and maintainability.
+- Add unit tests for all operations.
+- Enhance the user interface (console or GUI).
+- Add scientific/programmer modes.
+
+---
 
 ### To Improve the Calculator
 - Add input validation and error handling for all user inputs.

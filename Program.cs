@@ -7,7 +7,6 @@ namespace Calculator_App
     {
         // File path for saving/loading history
         static string historyFilePath = "history.txt";
-    {
         // List to store calculation history
         static System.Collections.Generic.List<string> history = new System.Collections.Generic.List<string>();
         static void Main(string[] args)
@@ -194,18 +193,7 @@ namespace Calculator_App
                 Console.WriteLine($"Error loading history: {ex.Message}");
             }
         }
-                        default:
-                            Console.WriteLine("Invalid selection. Please enter a valid value.");
-                            break;
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("Invalid selection. Please enter a valid value.");
-                }
-                Console.WriteLine();
-            }
-        }
+
         //functions for each mathematical operation.
         static double Addition(double addend1, double addend2)
         {
@@ -247,10 +235,10 @@ namespace Calculator_App
                 history.Add($"ApplyFourOperations: {num1} + {num2} = {add}, {num1} - {num2} = {sub}, {num1} * {num2} = {mul}, {num1} / {num2} = {div}");
             }
         }
+
         static double CalculateAverage(double num1, double num2, double num3)
         {
             return (num1 + num2 + num3) / 3;
         }
     }
-
 }

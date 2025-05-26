@@ -1,0 +1,4 @@
+Multiplication: 5 * 3 = 15
+Square root: sqrt(49) = 7
+Exponentiation: 5 ^ 2 = 25
+Multiplication: 10 * 10 = 100
