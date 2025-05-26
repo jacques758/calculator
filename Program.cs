@@ -5,6 +5,9 @@ namespace Calculator_App
 {
     class Program
     {
+        // File path for saving/loading history
+        static string historyFilePath = "history.txt";
+    {
         // List to store calculation history
         static System.Collections.Generic.List<string> history = new System.Collections.Generic.List<string>();
         static void Main(string[] args)
@@ -21,8 +24,12 @@ namespace Calculator_App
                 Console.WriteLine("4 - Division");
                 Console.WriteLine("5 - Apply four operations");
                 Console.WriteLine("6 - Calculate average");
-                Console.WriteLine("7 - View history");
-                Console.WriteLine("8 - Exit");
+                Console.WriteLine("7 - Square root");
+                Console.WriteLine("8 - Exponentiation");
+                Console.WriteLine("9 - View history");
+                Console.WriteLine("10 - Save history");
+                Console.WriteLine("11 - Load history");
+                Console.WriteLine("12 - Exit");
 
                 int choice;
                 if (int.TryParse(Console.ReadLine(), out choice))
@@ -92,6 +99,30 @@ namespace Calculator_App
                             history.Add($"Average: ({num3} + {num4} + {num5}) / 3 = {avg}");
                             break;
                         case 7:
+                            Console.WriteLine("Enter the number to find the square root:");
+                            double sqrtInput = double.Parse(Console.ReadLine());
+                            if (sqrtInput < 0)
+                            {
+                                Console.WriteLine("Result: NaN (cannot take square root of a negative number)");
+                                history.Add($"Square root: sqrt({sqrtInput}) = NaN");
+                            }
+                            else
+                            {
+                                double sqrtResult = Math.Sqrt(sqrtInput);
+                                Console.WriteLine("Result: " + sqrtResult);
+                                history.Add($"Square root: sqrt({sqrtInput}) = {sqrtResult}");
+                            }
+                            break;
+                        case 8:
+                            Console.WriteLine("Enter the base number:");
+                            double baseNum = double.Parse(Console.ReadLine());
+                            Console.WriteLine("Enter the exponent:");
+                            double exponent = double.Parse(Console.ReadLine());
+                            double expResult = Math.Pow(baseNum, exponent);
+                            Console.WriteLine("Result: " + expResult);
+                            history.Add($"Exponentiation: {baseNum} ^ {exponent} = {expResult}");
+                            break;
+                        case 9:
                             Console.WriteLine("======= Calculation History =======");
                             if (history.Count == 0)
                             {
@@ -106,10 +137,63 @@ namespace Calculator_App
                             }
                             Console.WriteLine("==================================");
                             break;
-                        case 8:
+                        case 10:
+                            SaveHistory();
+                            break;
+                        case 11:
+                            LoadHistory();
+                            break;
+                        case 12:
                             Console.WriteLine("Thank you for using my calculator application!");
                             exit = true;
                             break;
+                        default:
+                            Console.WriteLine("Invalid selection. Please enter a valid value.");
+                            break;
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Invalid selection. Please enter a valid value.");
+                }
+                Console.WriteLine();
+            }
+        }
+
+        // Save history to file
+        static void SaveHistory()
+        {
+            try
+            {
+                System.IO.File.WriteAllLines(historyFilePath, history);
+                Console.WriteLine($"History saved to {historyFilePath}.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error saving history: {ex.Message}");
+            }
+        }
+
+        // Load history from file
+        static void LoadHistory()
+        {
+            try
+            {
+                if (System.IO.File.Exists(historyFilePath))
+                {
+                    history = new System.Collections.Generic.List<string>(System.IO.File.ReadAllLines(historyFilePath));
+                    Console.WriteLine($"History loaded from {historyFilePath}.");
+                }
+                else
+                {
+                    Console.WriteLine($"No history file found at {historyFilePath}.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error loading history: {ex.Message}");
+            }
+        }
                         default:
                             Console.WriteLine("Invalid selection. Please enter a valid value.");
                             break;
