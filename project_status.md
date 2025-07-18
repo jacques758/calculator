@@ -3,16 +3,19 @@
 
 - [x] Add more mathematical functions: exponentiation, square root
 - [ ] Add more mathematical functions: modulus, trigonometric functions (sin, cos, tan), logarithms
-- [ ] Input validation & error handling: use TryParse for all number inputs, handle exceptions gracefully, provide user-friendly error messages
+- [x] Input validation & error handling: use TryParse for all number inputs, handle exceptions gracefully, provide user-friendly error messages
 - [x] History feature: store and display a history of calculations performed during the session
-- [ ] Support for multiple numbers: allow operations (like sum, average, etc.) on a list of numbers, not just two or three
-- [ ] User interface improvements: add color to the console output, use clearer menus and prompts
-- [ ] Modularize the code: move each operation into its own class or file for better organization and scalability
+- [X] Support for multiple numbers: allow operations (like sum, average, etc.) on a list of numbers, not just two or three
+- [X] User interface improvements: add color to the console output, use clearer menus and prompts
+- [X] Modularize the code: move each operation into its own class or file for better organization and scalability
 - [x] Save/load functionality: allow users to save their calculation history to a file and load it later
-- [ ] Unit tests: add a test project to ensure all operations work as expected
-- [ ] Scientific/programmer modes: add modes for scientific or programmer calculations (binary, hex, bitwise operations)
-- [ ] GUI version: create a simple graphical user interface using Windows Forms or WPF
+- [x] Unit tests: add a test project to ensure all operations work as expected
+- [X] Scientific/programmer modes: add modes for scientific or programmer calculations (binary, hex, bitwise operations)
+- [x] GUI version: create a simple graphical user interface using Windows Forms or WPF
 
+1- trigonometric
+2- scientific mode 
+3- ✅ GUI version - COMPLETED
 # Project Status: Calculator Console App
 
 ## Features Implemented
@@ -24,6 +27,14 @@
 - Save calculation history to a file
 - Load calculation history from a file
 - User menu with options for all features
+- **NEW: Windows Forms GUI Calculator** with:
+  - Modern, clean interface with color-coded buttons
+  - Number pad layout (0-9)
+  - Basic operations (+, -, ×, ÷)
+  - Advanced operations (√, x²)
+  - History panel (expandable/collapsible)
+  - Full keyboard support
+  - Error handling and validation
 
 ## Current Menu Options
 1. Addition
@@ -72,3 +83,6 @@ The build error has been fixed, but there are still multiple compiler warnings. 
 ---
 
 **Last updated:** May 26, 2025
+
+fix the layout to make it mor uniform 
+link the calculator to my website portfolio
