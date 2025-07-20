@@ -29,7 +29,7 @@ namespace Calculator_App
                 // Run in GUI mode
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
-                Application.Run(new CalculatorFormRedesigned());
+                Application.Run(new CalculatorFormModern());
             }
         }
     }
